@@ -1,0 +1,307 @@
+﻿<xr:RibbonWindow x:Class="DoodleLand.MainWindow"                 
+                 xmlns:xd="clr-namespace:DevComponents.WpfDock;assembly=DevComponents.WpfDock"
+                 xmlns:xr="clr-namespace:DevComponents.WpfRibbon;assembly=DevComponents.WpfRibbon"
+                 xmlns:xe="clr-namespace:DevComponents.WpfEditors;assembly=DevComponents.WpfEditors"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:controller="clr-namespace:DoodleLand.Controllers"
+                 xmlns:uc="clr-namespace:DoodleLand.UserControls"
+                 WindowStartupLocation="CenterScreen"
+                 Title="Doodle Land Editor" Height="768" Width="1024">
+    
+    <DockPanel LastChildFill="True">
+        <xr:Ribbon DockPanel.Dock="Top" LicenseKey="DAD80300DA22" x:Name="MainRibbon">
+            
+            <xr:Ribbon.ApplicationMenu>
+
+                <xr:ApplicationMenu xr:Ribbon.KeyTip="F">
+                    <xr:ApplicationMenu.Image >
+                        <Image  Source="Icons/Firefox Alt.png" Width="32" Height="32"/>
+                    </xr:ApplicationMenu.Image>
+
+                    <!-- Application Commands -->
+                    <xr:ApplicationMenu.AppItems>
+                        <xr:ButtonDropDown ColorClass="ButtonWithBackground" Margin="6,0,0,0" xr:Ribbon.KeyTip="X" Command="ApplicationCommands.Close" Header="Exit DoodleLand">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Exit.png" Stretch="None"/>
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+                    </xr:ApplicationMenu.AppItems>
+
+                    <!-- Most Recently Used Items -->
+                    <xr:ApplicationMenu.MruItems>
+                        <TextBlock MinWidth="200" FontWeight="Bold">Recent Levels</TextBlock>
+                        <Separator Padding="0"/>
+                        <StackPanel x:Name="mruStack">
+                        </StackPanel>
+                    </xr:ApplicationMenu.MruItems>
+
+                    <!-- Document Commands etc.-->
+                    <xr:ButtonDropDown Style="{DynamicResource AppMenuCommandButton}" 
+                        xr:Ribbon.KeyTip="N" Command="controller:Commands.NewLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/Document32.png" Stretch="None"/>
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+                    <xr:ButtonDropDown Style="{DynamicResource AppMenuCommandButton}" 
+                        xr:Ribbon.KeyTip="O" Command="controller:Commands.OpenLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/FolderOpen32.png" Stretch="None"/>
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+                    <xr:ButtonDropDown Style="{DynamicResource AppMenuCommandButton}" 
+                        xr:Ribbon.KeyTip="C" Command="controller:Commands.CloseLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/FolderClosed32.png" Stretch="None"/>
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+                    <Separator Style="{DynamicResource AppMenuSeparator}"/>
+
+                    <xr:ButtonDropDown Style="{DynamicResource AppMenuCommandButton}" 
+                        xr:Ribbon.KeyTip="S" Command="controller:Commands.SaveLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/Save32.png" Stretch="None"/>
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+                    <xr:ButtonDropDown Style="{DynamicResource AppMenuCommandButton}" 
+                        xr:Ribbon.KeyTip="A" Command="controller:Commands.SaveLevelAs">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/SaveAs32.png" Stretch="None"/>
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+
+                </xr:ApplicationMenu>
+            </xr:Ribbon.ApplicationMenu>
+
+            <!-- quick access toolbar-->
+            <xr:Ribbon.QuickAccessToolbar>
+                <xr:Qat>
+                    <xr:ButtonDropDown PartVisibility="ImageOnly" xr:Ribbon.KeyTip="1" Command="controller:Commands.NewLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/Document32.png" />
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+
+                    <xr:ButtonDropDown PartVisibility="ImageOnly" xr:Ribbon.KeyTip="1" Command="controller:Commands.OpenLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/FolderOpen32.png" />
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+
+                    <xr:ButtonDropDown PartVisibility="ImageOnly" xr:Ribbon.KeyTip="1" Command="controller:Commands.SaveLevel">
+                        <xr:ButtonDropDown.Image>
+                            <Image Source="Icons/Save.png" />
+                        </xr:ButtonDropDown.Image>
+                    </xr:ButtonDropDown>
+                    <xr:QatCustomizeButton />
+                </xr:Qat>
+            </xr:Ribbon.QuickAccessToolbar>
+            
+            <xr:RibbonTab Header="Home" xr:Ribbon.KeyTip="H">
+                
+                <xr:RibbonBarPanel  Height="90" xr:Ribbon.KeyTip="R">
+                    <xr:RibbonBar Header="Clipboard" Name="ribbonBarClipboard" ResizeOrderIndex="5" xr:Ribbon.KeyTip="FO"
+                                  VerticalContentAlignment="Top">
+                        <xr:RibbonBar.CollapsedImage>
+                            <Image Source="Icons/Paste32.png"/>
+                        </xr:RibbonBar.CollapsedImage>
+                        <xr:ButtonDropDown ImagePosition="Top" xr:RibbonBar.MinAutoSizeHint="Medium" ExpandPosition="Bottom" 
+                                           Header="Paste" InlineExpand="False" PopupType="Menu" ContentExpands="true" 
+                                           xr:Ribbon.KeyTip="V" Height="70" VerticalAlignment="Top" Margin="2 0 0 0"
+                               Command="ApplicationCommands.Paste">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Paste32.png" />
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+
+                        <xr:ButtonDropDown Header="Cut" xr:Ribbon.KeyTip="X" Padding="0 1 0 0" Margin=" 0 0 2 0" Command="ApplicationCommands.Cut">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Cut.png" Width="16" Height="16" Margin="0 0 2 0"/>
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+
+                        <xr:ButtonDropDown Header="Copy" xr:Ribbon.KeyTip="C" Padding="0 1 0 0" Margin="0 0 2 0" Command="ApplicationCommands.Copy">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Copy.png" Width="16" Height="16" Margin="0 0 2 0"/>
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+                    </xr:RibbonBar>
+                    
+                    <xr:RibbonBar Header="Game Size" Name="ribbonBarTool" ResizeOrderIndex="5" xr:Ribbon.KeyTip="FO"
+                                  VerticalContentAlignment="Top">
+                        
+                        <xr:ButtonDropDown Header="iPhone 3G" xr:Ribbon.KeyTip="C" Padding="0 1 0 0" Margin="0 0 2 0" Command="controller:Commands.iPhone3GSizeCommand">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Copy.png" Width="16" Height="16" Margin="0 0 2 0"/>
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+
+                        <xr:ButtonDropDown Header="iPhone 4" xr:Ribbon.KeyTip="C" Padding="0 1 0 0" Margin="0 0 2 0" Command="controller:Commands.iPhone4SizeCommand">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Copy.png" Width="16" Height="16" Margin="0 0 2 0"/>
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+
+                        <xr:ButtonDropDown Header="iPad" xr:Ribbon.KeyTip="C" Padding="0 1 0 0" Margin="0 0 2 0" Command="controller:Commands.iPadSizeCommand">
+                            <xr:ButtonDropDown.Image>
+                                <Image Source="Icons/Copy.png" Width="16" Height="16" Margin="0 0 2 0"/>
+                            </xr:ButtonDropDown.Image>
+                        </xr:ButtonDropDown>
+
+                    </xr:RibbonBar>
+
+                </xr:RibbonBarPanel>
+
+            </xr:RibbonTab>
+
+        </xr:Ribbon>
+
+
+        <!-- Status Bar -->
+        <StatusBar DockPanel.Dock="Bottom"
+            FlowDirection="RightToLeft">
+
+            <StatusBar.Resources>
+            </StatusBar.Resources>
+
+            <!-- Filling direction is from right to left -->
+            <StatusBarItem x:Name="_statusPhysicsUpdateTime" Width="70" FlowDirection="LeftToRight"/>
+            <StatusBarItem FlowDirection="LeftToRight">PhysUpd:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+            <StatusBarItem x:Name="_statusFPS" Width="30" FlowDirection="LeftToRight"/>
+            <StatusBarItem FlowDirection="LeftToRight">FPS:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+            <StatusBarItem x:Name="_statusJoint" Width="30" FlowDirection="LeftToRight"/>
+            <StatusBarItem FlowDirection="LeftToRight">Joint:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+            <StatusBarItem x:Name="_statusBodyPhys" Width="30" FlowDirection="LeftToRight" />
+            <StatusBarItem FlowDirection="LeftToRight">Physics Body:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+
+            <StatusBarItem x:Name="_statusSpiritEntity" Width="30" FlowDirection="LeftToRight"/>
+            <StatusBarItem FlowDirection="LeftToRight">Spirit Entity:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+            <StatusBarItem x:Name="_statusEntity" Width="30" FlowDirection="LeftToRight" />
+            <StatusBarItem FlowDirection="LeftToRight">Entity:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+            <StatusBarItem FlowDirection="LeftToRight">m</StatusBarItem>
+            <StatusBarItem x:Name="_statusAreaHeight" FlowDirection="LeftToRight" Content="{Binding Path=SelectionHeight, Mode=OneWay}"/>
+            <StatusBarItem FlowDirection="LeftToRight">x</StatusBarItem>
+            <StatusBarItem x:Name="_statusAreaWidth" FlowDirection="LeftToRight" Content="{Binding Path=SelectionWidth, Mode=OneWay}"/>
+
+            <StatusBarItem FlowDirection="LeftToRight">Area:</StatusBarItem>
+            <Separator Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=xr:Ribbon, ResourceId=StatusBarSeparator}}" DockPanel.Dock="Left"/>
+
+
+            <StatusBarItem Content="{Binding Path=Status, Mode=OneWay}" FlowDirection="LeftToRight" >
+                <StatusBarItem.ToolTip>
+                    <xr:SuperToolTip Header="Status">
+                        <TextBlock Text="{Binding Path=Status, Mode=OneWay}" FlowDirection="LeftToRight"/>
+                    </xr:SuperToolTip>
+                </StatusBarItem.ToolTip>
+            </StatusBarItem>
+        </StatusBar>
+
+        <!-- Dock Window group -->
+        <xd:DockSite LicenseKey="DAD80300DA22" Margin="4,0,4,0" 
+                     x:Name="AppDock">
+            <xd:DockSite.SplitPanels>
+
+                <!-- we still required to set data context for each panel individually, 
+                so that its data binding won't change when parent changed from this 
+                MainWindow to floating window -->
+
+                <!-- Right panel for tools -->
+                <xd:SplitPanel xd:DockSite.Dock="Right" xd:DockSite.DockSize="250" x:Name="rightPanel">
+                    <xd:DockWindowGroup x:Name="dockWindowGroup" >
+                        <xd:DockWindow CanDockAsDocument="False" CanClose="False" x:Name="rightPanelTool">
+                            <xd:DockWindow.Header>
+                                <Binding Path="RightPaneToolTitle" Mode="OneWay" />
+                            </xd:DockWindow.Header>
+                            <xd:DockWindow.Image>
+                                <Image Source="Icons/Component.png" Width="16" Height="16"/>
+                            </xd:DockWindow.Image>
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <UserControl Content="{Binding Path=RightPaneTool, Mode=OneWay}" />
+                            </ScrollViewer>
+                        </xd:DockWindow>
+                    </xd:DockWindowGroup>
+                </xd:SplitPanel>
+
+                <!-- Bottom panel for animation -->
+                <xd:SplitPanel xd:DockSite.Dock="Bottom" xd:DockSite.DockSize="180" x:Name="bottomPanel" Visibility="Collapsed">
+                    <xd:DockWindowGroup x:Name="bottomDockGroup" Visibility="Collapsed">
+                        <xd:DockWindow CanDockAsDocument="False" CanClose="False" x:Name="bottomPanelTool" Header="Animations"
+                                       Visibility="Collapsed">
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <UserControl Content="{Binding Path=BottomPaneTool, Mode=OneWay}" />
+                            </ScrollViewer>
+                        </xd:DockWindow>
+
+                    </xd:DockWindowGroup>
+                </xd:SplitPanel>
+            </xd:DockSite.SplitPanels>
+
+
+            <!-- Render View -->
+            <xd:SplitPanel x:Name="renderView">
+                
+                <xd:DockWindowGroup x:Name="dockGroup">
+                    
+                    <xd:DockWindow CanClose="False" CanAutoHide="False" 
+                                   CanFloat="False" CanTearOff="False" CanDockLeft="False" CanDockRight="False" 
+                                   CanDockTop="False" CanDockBottom="False" x:Name="renderWindow">
+                        <xd:DockWindow.Header>
+                            <TextBlock Padding="7 0 0 0">Render View</TextBlock>
+                        </xd:DockWindow.Header>
+                        <xd:DockWindow.Image>
+                            <Image Source="Icons/Pictures.png" Width="16" Height="16"/>
+                        </xd:DockWindow.Image>
+                        
+                        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="renderingDock" >
+
+                            <Canvas Background="White" Name="rootCanvas" 
+                                    ClipToBounds="True" 
+                                    >
+                                <Canvas Background="Black" Name="viewCanvas"
+                                        Width="{Binding Path=CanvasWidth}" Height="{Binding Path=CanvasHeight}">
+                                    <uc:ucBlock BlockWidth="20" BlockHeight="20" 
+                                                Canvas.Left="0" Canvas.Top="10"/>
+                                </Canvas>
+                            </Canvas>
+
+                        </DockPanel>
+                    </xd:DockWindow>
+
+                    <xd:DockWindow CanClose="False" CanAutoHide="False" 
+                                   CanFloat="False" CanTearOff="False" CanDockLeft="False" CanDockRight="False" 
+                                   CanDockTop="False" CanDockBottom="False" x:Name="imageWindow">
+                        <xd:DockWindow.Header>
+                            <TextBlock Padding="7 0 0 0">Texture View</TextBlock>
+                        </xd:DockWindow.Header>
+                        <xd:DockWindow.Image>
+                            <Image Source="Icons/Pictures.png" Width="16" Height="16"/>
+                        </xd:DockWindow.Image>
+
+                        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="imageDock" >
+
+                            <Canvas Background="White"  Name="imageCanvas" ClipToBounds="True" >
+                            </Canvas>
+
+                        </DockPanel>
+                    </xd:DockWindow>
+                    
+
+                </xd:DockWindowGroup>
+                
+            </xd:SplitPanel>
+        </xd:DockSite>
+        
+    </DockPanel>
+</xr:RibbonWindow>

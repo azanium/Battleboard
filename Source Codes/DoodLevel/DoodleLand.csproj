@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EC3EC23C-CF24-4C45-8010-798C89C647D5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DoodleLand</RootNamespace>
+    <AssemblyName>Doodle Land</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.WpfDock, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adef513edc9ed778, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\DevComponents.WpfDock.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.WpfEditors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cbba4a1563683cdb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\DevComponents.WpfEditors.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.WpfRibbon, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2037e151916410e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\DevComponents.WpfRibbon.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ucAnimationTool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ucBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AnimationController.cs" />
+    <Compile Include="Controllers\Commands.cs" />
+    <Compile Include="Controllers\Interfaces\ControllerBase.cs" />
+    <Compile Include="Controllers\Interfaces\IController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Converters\Converter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UserControls\KeyframeListBox.cs" />
+    <Compile Include="UserControls\ucAnimationTool.xaml.cs">
+      <DependentUpon>ucAnimationTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucBlock.xaml.cs">
+      <DependentUpon>ucBlock.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Bold.png" />
+    <Resource Include="Icons\Clipboard.png" />
+    <Resource Include="Icons\Component.png" />
+    <Resource Include="Icons\Copy.png" />
+    <Resource Include="Icons\Cut.png" />
+    <Resource Include="Icons\Document32.png" />
+    <Resource Include="Icons\Exit.png" />
+    <Resource Include="Icons\folder.png" />
+    <Resource Include="Icons\FolderClosed32.png" />
+    <Resource Include="Icons\FolderOpen32.png" />
+    <Resource Include="Icons\genericfile.png" />
+    <Resource Include="Icons\Help.png" />
+    <Resource Include="Icons\Paste16.png" />
+    <Resource Include="Icons\Paste32.png" />
+    <Resource Include="Icons\PauseNormalRed.png" />
+    <Resource Include="Icons\Play1Normal.png" />
+    <Resource Include="Icons\RecordNormal.png" />
+    <Resource Include="Icons\Redo.png" />
+    <Resource Include="Icons\refresh.png" />
+    <Resource Include="Icons\Save.png" />
+    <Resource Include="Icons\Save32.png" />
+    <Resource Include="Icons\SaveAs32.png" />
+    <Resource Include="Icons\Select.png" />
+    <Resource Include="Icons\StepForwardNormalOrange.png" />
+    <Resource Include="Icons\Stop1NormalRed.png" />
+    <Resource Include="Icons\Undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\anchor-icon-small-red.png" />
+    <Resource Include="Icons\anchor-icon.png" />
+    <Resource Include="Icons\anchor-icon_small.png" />
+    <Resource Include="Icons\Applications.png" />
+    <Resource Include="Icons\Debug.Break.png" />
+    <Resource Include="Icons\Debug.Continue.png" />
+    <Resource Include="Icons\Debug.Start.png" />
+    <Resource Include="Icons\Debug.StartDebugging.png" />
+    <Resource Include="Icons\Debug.StepInto.png" />
+    <Resource Include="Icons\Debug.StepOut.png" />
+    <Resource Include="Icons\Debug.StepOver.png" />
+    <Resource Include="Icons\Debug.StopProcess.png" />
+    <Resource Include="Icons\EmptyProject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Firefox alt.png" />
+    <Resource Include="Icons\iPulse.png" />
+    <Resource Include="Icons\mClass.png" />
+    <Resource Include="Icons\mEnum.png" />
+    <Resource Include="Icons\mEvent.png" />
+    <Resource Include="Icons\mField.png" />
+    <Resource Include="Icons\mFindIcon.png" />
+    <Resource Include="Icons\mFindNextIcon.png" />
+    <Resource Include="Icons\mMethod.png" />
+    <Resource Include="Icons\mNameSpace.png" />
+    <Resource Include="Icons\mProperty.png" />
+    <Resource Include="Icons\Paint.png" />
+    <Resource Include="Icons\Pictures.png" />
+    <Resource Include="Icons\Pinjoint red.png" />
+    <Resource Include="Icons\Pinjoint.png" />
+    <Resource Include="Icons\Preview.png" />
+    <Resource Include="Icons\Private Badge.png" />
+    <Resource Include="Icons\Public.png" />
+    <Resource Include="Icons\Stickies.png" />
+    <Resource Include="Icons\System Preferences.png" />
+    <Resource Include="Icons\xScope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Data\Core.Data.csproj">
+      <Project>{A1BE4C0D-5B00-4B75-870F-B9FEB741B598}</Project>
+      <Name>Core.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
